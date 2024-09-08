@@ -20,18 +20,12 @@ else
 fi
 
 # Downloading data from MariaDB Sample Data S3 Bucket
-echo -e "\nDownloading '${NAME3}.csv' from MariaDB S3 bucket..."
-if [[ -f "${SCHEMA_DIR}/${NAME3}.csv" ]]; then
-    if [[ $(wc -l <"${SCHEMA_DIR}/${NAME3}.csv") -eq 38083735 ]]; then
-        echo -e "${GREEN}'${NAME3}.csv' already exists and has the correct number of lines.${NC}"
-    fi
+echo -e "\nDownloading '${NAME3}.csv' from Dropbox..."
+if curl -L -o "${SCHEMA_DIR}/${NAME3}.csv" "https://www.dropbox.com/scl/fi/lcxm3knwk9dyvnzvlx3d0/flights.csv?rlkey=f329o7ddw05z2bzxojjovpo0e&st=lve2svp0&dl=1"; then
+    echo -e "Downloaded '${NAME3}.csv' ... ${GREEN}done${NC}\n"
 else
-    if curl -o "${SCHEMA_DIR}/${NAME3}.csv" -# "https://drive.google.com/drive/folders/1QCdpTGvKTbI_otaDfCVX2hguduNMFPBw/${NAME3}.csv"; then
-        echo -e "Downloaded '${NAME3}.csv' ... ${GREEN}done${NC}\n"
-    else
-        echo -e "Downloading '${NAME3}.csv' ... ${RED}failed${NC}"
-        exit 1
-    fi
+    echo -e "Downloading '${NAME3}.csv' ... ${RED}failed${NC}"
+    exit 1
 fi
 
 # Loading data into ColumnStore tables.
