@@ -26,7 +26,7 @@ if [[ -f "${SCHEMA_DIR}/${NAME3}.csv" ]]; then
         echo -e "${GREEN}'${NAME3}.csv' already exists and has the correct number of lines.${NC}"
     fi
 else
-    if curl -o "${SCHEMA_DIR}/${NAME3}.csv" -# "https://drive.google.com/uc?export=download&id=1jJvR_hNZPBoPVsUBDoBUGKTdDs7BZqcK"; then
+    if curl -o "${SCHEMA_DIR}/${NAME3}.csv" -# "https://drive.google.com/drive/folders/1QCdpTGvKTbI_otaDfCVX2hguduNMFPBw/${NAME3}.csv"; then
         echo -e "Downloaded '${NAME3}.csv' ... ${GREEN}done${NC}\n"
     else
         echo -e "Downloading '${NAME3}.csv' ... ${RED}failed${NC}"
